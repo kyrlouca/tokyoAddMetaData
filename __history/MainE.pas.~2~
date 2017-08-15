@@ -1,0 +1,208 @@
+unit MainE;
+{
+        Each command can span multiple lines but must end with semicolon;
+        Start only the first line of each command with // to make sure it works
+        Procedures, Generators should start the command with "SET TERM ^" and end with "^"
+        Set term allows these commands to have semicolons inside
+     
+}
+interface
+                     
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Db,  Grids, DBGrids, StdCtrls, Buttons, DBAccess, IBC, MemDS,
+  Wwdbigrd, Wwdbgrid, DAScript, IBCScript, ExtCtrls;
+
+type
+  TMainEFRM = class(TForm)
+    Label1: TLabel;
+    Exit: TButton;
+    Button2: TButton;
+    OpenDialog1: TOpenDialog;
+    CabCOnnection: TIBCConnection;
+    UpdateTrans: TIBCTransaction;
+    IBCQuery1: TIBCQuery;
+    IBCQuery1NAME: TStringField;
+    IBCQuery1ADDRESS1: TStringField;
+    IBCQuery1ADDRESS2: TStringField;
+    IBCQuery1ADDRESS3: TStringField;
+    IBCQuery1VAT_ID: TStringField;
+    IBCQuery1COMPANY_ID: TStringField;
+    IBCQuery1RECEIPIENT_ID: TStringField;
+    IBCQuery1OTHER_ID: TStringField;
+    IBCQuery1TEL_NO1: TStringField;
+    IBCQuery1TEL_NO2: TStringField;
+    IBCQuery1FAX1: TStringField;
+    IBCQuery1FAX2: TStringField;
+    IBCQuery1FK_DISTRICT_CODE: TStringField;
+    IBCQuery1COMMENTS: TStringField;
+    IBCQuery1AUTHORIZATION_NUMBER: TStringField;
+    IBCQuery1QUARANTEE_NUMBER: TStringField;
+    IBCQuery1IMPORTER: TStringField;
+    IBCQuery1EXPORTER: TStringField;
+    IBCQuery1RESELLER: TStringField;
+    IBCQuery1CUSTOM_DEALER_NUMBER: TStringField;
+    IBCQuery1FK_OCCUPATION_CODE: TStringField;
+    IBCQuery1FK_CUSTOMER_CATEGORY_CODE: TStringField;
+    IBCQuery1AUTHORITY_TO_AGENT: TStringField;
+    IBCQuery1COMPANY_OR_PERSON: TStringField;
+    IBCQuery1CODE: TIntegerField;
+    IBCQuery1ACCOUNT_NUMBER: TIntegerField;
+    IBCQuery1EMAIL_TO_NOTIFY: TStringField;
+    IBCQuery1MOBILE_TO_NOTIFY: TStringField;
+    IBCQuery1IS_NOTIFY_MOBILE: TStringField;
+    IBCQuery1IS_NOTIFY_EMAIL: TStringField;
+    IBCQuery1IS_RECEIVE_NOTIFICATION: TStringField;
+    IBCQuery1AUTHORITY_TO_DHL: TStringField;
+    IBCDataSource1: TIBCDataSource;
+    ScriptSQL: TIBCScript;
+    Button3: TButton;
+    DatabaseFLD: TLabel;
+    Bevel1: TBevel;
+    ListBox1: TListBox;
+    procedure ExitClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure ScriptSQLError(Sender: TObject; E: Exception; SQL: String;
+      var Action: TErrorAction);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+        Function OpenFile(Var InFile:TextFile):Boolean;
+        procedure ConnectToDatabase;
+  end;
+
+var
+  MainEFRM: TMainEFRM;
+
+implementation
+
+{$R *.DFM}
+
+procedure TMainEFRM.ConnectToDatabase;
+Var
+        FBClientPath:String;
+        InFile:TextFile;
+        LIne:String;
+        ServerIP,DatabasePath:String;
+        TextArray : Array [1..3] of String;
+        I:Integer;
+begin
+
+        If not OpenFile(InFile) then begin
+                raise exception.create('Cannot open file');
+        end;
+        I:=0;
+        while (not Eof(Infile) and (I<2) )do begin
+                Inc(i);
+                Readln(InFile,TextArray[i]);
+        end;
+        If (I<2) then begin
+                ShowMEssage('File must have two lines. First line for server ip, second line for Full database file');
+        end else begin
+                ServerIP:=TextArray[1];
+                DatabasePath:=TextArray[2];
+        end;
+        CloseFile(Infile);
+
+        CabConnection.Server:=ServerIP;
+        CabConnection.database:=DatabasePath;
+
+        FbClientPath:=ExtractFileDir( ExtractFilePath(Application.EXEName)  );
+        FbClientPath:=FBClientPath+'\gds32.dll';
+
+        //CabConnection.ClientLibrary := '.\gds32.dll';
+        CabConnection.ClientLibrary := FBClientPath;
+        If CabConnection.connected then
+                CabConnection.Disconnect;
+
+        CabConnection.Connect;
+        If CabConnection.Connected then begin
+                //ShowMessage('OK');
+        end;
+
+
+End;
+
+Function TMainEFRM.OpenFile(Var InFile:TextFile):Boolean;
+Var
+        AppDirectory:String;
+        ParamFIleName:String;
+        TheFileName:String;
+Begin
+
+AppDirectory:= ExtractFilePath(Application.ExeName);
+ParamFileName:=APpDirectory+'DatabaseParams.txt';
+
+Result:=False;
+
+if 2= 2 then begin
+    TheFileName:= ParamFileName;
+    AssignFile(InFile,TheFileName);
+    {$I-}
+    Reset(InFile);
+    {$I+}
+    if IOResult <> 0 then begin
+        Result:=false;
+        raise exception.create('Cannot Open Database Parameter file:'+ThefileName);
+    end else begin
+        Result:=True;
+    end;
+end;
+
+end;
+
+
+
+
+
+procedure TMainEFRM.ExitClick(Sender: TObject);
+begin
+Close;
+end;        
+
+procedure TMainEFRM.Button2Click(Sender: TObject);
+Var
+TheFileName:String;
+begin
+OpenDialog1.Execute;
+TheFileName:=OpenDialog1.FileName;
+ShowMessage(OpenDialog1.FileName);
+Listbox1.Items.LoadFromFile(TheFileName);
+end;
+
+procedure TMainEFRM.Button3Click(Sender: TObject);
+var
+I :Integer;
+begin
+
+SCriptSQL.SQL:=ListBox1.Items;
+SCriptSQL.Execute;             
+
+
+ShowMessage('Finished');
+
+
+
+end;
+
+procedure TMainEFRM.ScriptSQLError(Sender: TObject; E: Exception; SQL: String;
+  var Action: TErrorAction);
+begin
+ShowMEssage('Error: '+SQL+'->'+ E.Message);
+Action:=eaContinue;
+end;
+
+procedure TMainEFRM.FormCreate(Sender: TObject);
+begin
+ConnectToDatabase;
+DatabaseFLD.Caption:=CabCOnnection.DatabaseInfo.DBFileName;
+end;
+
+end.
+
+
+
+

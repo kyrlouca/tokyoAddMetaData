@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/05/27 14:52:50.000.763,=C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/05/10 07:10:24.000.861,=C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/06/27 11:29:35.000.119,=C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/06/27 11:49:13.000.723,=C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/13 11:37:27.000.913,=C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/08/13 11:37:57.000.261,C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Data\DelphiProjects\TokyoAddMetaDataCab\Unit1.pas</Transaction>
+    <Transaction>2017/08/13 11:37:57.000.261,C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Data\DelphiProjects\TokyoAddMetaDataCab\Unit1.dfm</Transaction>
+    <Transaction>2017/08/13 11:38:08.000.692,C:\Users\KyrLouca\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Data\DelphiProjects\TokyoAddMetaDataCab\TokyoAddMetaData.dproj</Transaction>
+    <Transaction>2017/08/13 11:39:07.000.553,=C:\Data\DelphiProjects\TokyoAddMetaDataCab\MainE.pas</Transaction>
+    <Transaction>2017/08/13 11:39:12.000.450,C:\Data\DelphiProjects\TokyoAddMetaDataCab\Unit1.pas=</Transaction>
+  </Transactions>
+</BorlandProject>
