@@ -88,35 +88,8 @@ object MainEFRM: TMainEFRM
     Width = 593
     Height = 384
     Items.Strings = (
-      '//ALTER TABLE HAWB ADD DESTINATION_STATION CHAR_20'
-      ''
-      
-        '//ALTER TABLE CLEARANCE_WAITING_CODE ADD IS_CLEARED BOOLEAN_OPTI' +
-        'ONAL_NULL'
       '//ALTER TABLE MAWB ADD FILE_NAME_XML CHAR_80'
-      ''
-      '//delete from tariff_group_line '
-      '//delete from tariff_group '
-      '//delete from clearance_instruction '
-      ''
-      
-        '//ALTER TABLE CLEARANCE_INSTRUCTION ADD IS_DISPLAY BOOLEAN_OPTIO' +
-        'NAL_NULL'
-      ''
-      '//CREATE INDEX CUSTOMER_VAT_NDX ON CUSTOMER (VAT_ID)'
-      ''
-      '//CREATE TABLE AGENT ('
-      
-        '    SERIAL_NUMBER  SERIAL_DOMAIN NOT NULL /* SERIAL_DOMAIN = INT' +
-        'EGER NOT NULL */,'
-      '    NAME           CHAR_80 /* CHAR_80 = VARCHAR(80) */,'
-      '    AUTHORITY_ID   CHAR_30 /* CHAR_30 = CHAR(30) */'
-      ');'
-      ''
-      
-        '//ALTER TABLE AGENT ADD CONSTRAINT PK_AGENT PRIMARY KEY (SERIAL_' +
-        'NUMBER);'
-      '//CREATE SEQUENCE GEN_AGENT')
+      '//delete from clearance_instruction ci where ci.code = '#39'DTP'#39)
     TabOrder = 3
   end
   object OpenDialog1: TOpenDialog

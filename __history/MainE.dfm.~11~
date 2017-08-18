@@ -88,11 +88,6 @@ object MainEFRM: TMainEFRM
     Width = 593
     Height = 384
     Items.Strings = (
-      '//ALTER TABLE HAWB ADD DESTINATION_STATION CHAR_20'
-      ''
-      
-        '//ALTER TABLE CLEARANCE_WAITING_CODE ADD IS_CLEARED BOOLEAN_OPTI' +
-        'ONAL_NULL'
       '//ALTER TABLE MAWB ADD FILE_NAME_XML CHAR_80'
       ''
       '//delete from tariff_group_line '

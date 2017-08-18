@@ -88,21 +88,8 @@ object MainEFRM: TMainEFRM
     Width = 593
     Height = 384
     Items.Strings = (
-      '//ALTER TABLE HAWB ADD DESTINATION_STATION CHAR_20'
-      ''
-      
-        '//ALTER TABLE CLEARANCE_WAITING_CODE ADD IS_CLEARED BOOLEAN_OPTI' +
-        'ONAL_NULL'
       '//ALTER TABLE MAWB ADD FILE_NAME_XML CHAR_80'
-      ''
-      '//delete from tariff_group_line '
-      '//delete from tariff_group '
-      '//delete from clearance_instruction '
-      ''
-      
-        '//ALTER TABLE CLEARANCE_INSTRUCTION ADD IS_DISPLAY BOOLEAN_OPTIO' +
-        'NAL_NULL'
-      ''
+      '//delete from clearance_instruction ci where ci.code = '#39'DTP'#39
       '//CREATE INDEX CUSTOMER_VAT_NDX ON CUSTOMER (VAT_ID)'
       ''
       '//CREATE TABLE AGENT ('

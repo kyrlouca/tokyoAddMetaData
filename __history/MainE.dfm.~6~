@@ -1,9 +1,9 @@
 object MainEFRM: TMainEFRM
   Left = 253
   Top = 193
-  Width = 1298
-  Height = 890
   Caption = 'MainEFRM'
+  ClientHeight = 630
+  ClientWidth = 804
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,39 +18,42 @@ object MainEFRM: TMainEFRM
   object Label1: TLabel
     Left = 0
     Top = 0
-    Width = 1259
+    Width = 804
     Height = 59
     Align = alTop
     Alignment = taCenter
-    Caption = 'Add Metadata  Cab Main'
+    Caption = 'Add Metadata Tokyo  Main'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clActiveCaption
     Font.Height = -50
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitWidth = 629
   end
   object DatabaseFLD: TLabel
     Left = 0
     Top = 59
-    Width = 1259
+    Width = 804
     Height = 35
     Align = alTop
     Alignment = taCenter
-    Caption = 'Add Metadata Cab'
+    Caption = 'Add Metadata Tokyo Cab'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
     Font.Height = -30
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitWidth = 354
   end
   object Bevel1: TBevel
     Left = 0
     Top = 94
-    Width = 1259
+    Width = 804
     Height = 67
     Align = alTop
+    ExplicitWidth = 1259
   end
   object Exit: TButton
     Left = 123
@@ -62,8 +65,8 @@ object MainEFRM: TMainEFRM
     OnClick = ExitClick
   end
   object Button2: TButton
-    Left = 792
-    Top = 152
+    Left = 666
+    Top = 188
     Width = 75
     Height = 25
     Caption = 'LoadFromFile'
@@ -71,8 +74,8 @@ object MainEFRM: TMainEFRM
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 24
-    Top = 888
+    Left = 40
+    Top = 551
     Width = 75
     Height = 41
     Caption = 'Execute'
@@ -80,15 +83,14 @@ object MainEFRM: TMainEFRM
     OnClick = Button3Click
   end
   object ListBox1: TListBox
-    Left = 80
-    Top = 216
+    Left = 40
+    Top = 161
     Width = 593
-    Height = 481
-    ItemHeight = 16
+    Height = 384
     Items.Strings = (
-      '//DROP INDEX MAWBIDINDEX;'
-      '//CREATE INDEX MAWBIDINDEX ON MAWB (MAWB_ID);'
-      '')
+      '//ALTER TABLE MAWB ADD FILE_NAME_XML CHAR_80'
+      '//delete from clearance_instruction ci where ci.code = '#39'DTP'#39
+      '//CREATE INDEX CUSTOMER_VAT_NDX ON CUSTOMER (VAT_ID)')
     TabOrder = 3
   end
   object OpenDialog1: TOpenDialog
@@ -97,7 +99,7 @@ object MainEFRM: TMainEFRM
     InitialDir = 'E:\All\Databases\Tocheck'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
     Left = 328
-    Top = 140
+    Top = 252
   end
   object CabCOnnection: TIBCConnection
     Database = 'C:\Data\DelphiProjects\Databases\Cab\IBDHL25.FDB'
